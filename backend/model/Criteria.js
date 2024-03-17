@@ -1,5 +1,5 @@
-import { Sequelize } from "sequelize";
-import conn from "../connect";
+const Sequelize  = require("sequelize");
+const conn = require("../config/connect");
 const {DataTypes} = Sequelize;
 
 const Criteria  = conn.define('challengeCriteria',{
@@ -28,4 +28,4 @@ conn.sync()
     .catch(err => {
         console.error("Erreur lors de la création de la table 'users':", err);
     });
-export default Criteria;
+module.exports = Criteria;

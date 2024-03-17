@@ -1,20 +1,16 @@
-import { Sequelize } from "sequelize";
-import { createConnection } from 'mysql';
+const { Sequelize } = require("sequelize");
 
-const conn = createConnection({
-    host: 'localhost',
-    port:"3306",
-    user: 'root',
-    password: '',
-    database: 'scc',   
+const sequelize = new Sequelize('scc', 'root', '', {
+  host: 'localhost',
+  dialect: 'mysql',
 });
 
-conn.connect((err) => {
-    if (err) {
-        console.error('Erreur de connexion à la base de données !');
-        return;
-      }
-      console.log('Connexion à la base de données réussie');
-});
+sequelize.authenticate()
+  .then(() => {
+    console.log('Connexion à la base de données réussie');
+  })
+  .catch(err => {
+    console.error('Erreur de connexion à la base de données :', err);
+  });
 
-module.exports=conn
+module.exports = sequelize;

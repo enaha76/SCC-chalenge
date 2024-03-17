@@ -1,7 +1,7 @@
-import { Sequelize } from "sequelize";
-import conn from "../connect";
-import Teams from './TeamsModel.js';
-import Challenge from './Challenges .js'
+const Sequelize  = require("sequelize");
+const conn = require("../config/connect");
+const Teams = require('./TeamsModel.js');
+const Challenge = require('./Challenges .js');
 const {DataTypes} = Sequelize;
 
 const Submissions = conn.define('submissions',{
@@ -47,4 +47,4 @@ conn.sync()
     .catch(err => {
         console.error("Erreur lors de la création de la table 'users':", err);
     });
-export default Submissions;
+module.exports= Submissions;
