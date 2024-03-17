@@ -4,11 +4,12 @@ import './App.css';
 import TeamManagementPage from './pages/TeamManagement';
 import Login from './pages/Login';
 import UsersManagement from './pages/Admin/UsersManagement';
+import Evaluations from './pages/Evaluations';
 
 function App() {
   return (
    
-    <UsersManagement/>
+    <Evaluations/>
   );
 }
 
