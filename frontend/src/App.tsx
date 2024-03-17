@@ -1,3 +1,4 @@
+// App.tsx
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
@@ -6,11 +7,13 @@ import Login from './pages/Login';
 import UsersManagement from './pages/Admin/UsersManagement';
 import Evaluations from './pages/Evaluations';
 
-function App() {
+
+const App: React.FC = () => {
+  
   return (
    
     <Evaluations/>
   );
-}
+};
 
 export default App;
