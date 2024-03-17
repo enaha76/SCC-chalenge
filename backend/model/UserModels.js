@@ -1,5 +1,5 @@
-import { Sequelize } from "sequelize";
-import conn from "../connect";
+const Sequelize  = require("sequelize");
+const conn = require("../config/connect");
 
 const {DataTypes} = Sequelize;
 
@@ -28,7 +28,7 @@ const Users = conn.define('users',{
         }
     },
     level :{
-        type: DataTypes.ARRAY(DataTypes.STRING),
+        type: DataTypes.STRING,
         allowNull: false,
         validate:{
             notEmpty: true
@@ -42,7 +42,7 @@ const Users = conn.define('users',{
         }
     },
     role:{
-        type: DataTypes.ARRAY(DataTypes.STRING),
+        type: DataTypes.STRING,
         allowNull: false,
         validate:{
             notEmpty: true
@@ -58,4 +58,4 @@ conn.sync()
     .catch(err => {
         console.error("Erreur lors de la création de la table 'users':", err);
     });
-export default Users;
+module.exports = Users;

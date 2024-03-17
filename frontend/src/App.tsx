@@ -1,12 +1,22 @@
+// App.tsx
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Register from './pages/Register';
+import { BrowserRouter as Router, Routes, Route,Navigate } from 'react-router-dom';
+import mainRoutes from './routes/mainroute';
 
-function App() {
+
+const App: React.FC = () => {
+  
   return (
-    <Register />
+    <Router>
+      <Routes>
+      <Route path="/" element={<Navigate to="/login" replace />} />
+        
+      {mainRoutes.map((route, index) => (
+          <Route path={route.path} element={<route.component />} key={index} />
+        ))}
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;

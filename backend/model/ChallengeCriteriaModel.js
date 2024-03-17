@@ -1,7 +1,7 @@
-import { Sequelize } from "sequelize";
-import conn from "../connect";
-import Criteria from "./Criteria.js";
-import Challenges from "./ChallengesModel.js";
+const Sequelize  = require("sequelize");
+const conn = require("../config/connect");
+const Criteria = require("./Criteria.js");
+const Challenges = require("./ChallengesModel.js");
 const {DataTypes} = Sequelize;
 
 const ChallengeCriteria = conn.define('teams',{
