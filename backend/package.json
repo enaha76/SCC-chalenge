@@ -25,8 +25,12 @@
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.9.2",
     "nodemailer": "^6.9.12",
+<<<<<<< HEAD
     "path": "^0.12.7",
     "sequelize": "^6.37.1",
     "xlsx": "^0.18.5"
+=======
+    "sequelize": "^6.37.1"
+>>>>>>> fd9dfb8df3b1103c19c63dd378e7af047bbf0c4a
   }
 }

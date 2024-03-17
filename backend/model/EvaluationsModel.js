@@ -1,5 +1,6 @@
 const { Sequelize } = require("sequelize");
-const conn = require("../connect");
+const conn = require("../config/connect");
+
 const Users = require("./UserModels.js");
 const Teams = require("./TeamsModel.js");
 const Challenges = require("./ChallengesModel.js");

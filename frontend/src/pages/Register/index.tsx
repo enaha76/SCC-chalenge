@@ -1,24 +1,45 @@
 // login.tsx
 
-import React, { useState } from 'react';
+import React, { useState , SyntheticEvent } from 'react';
 import '../../style.sass';
 import '../../graindashboard/css/graindashboard.css';
+import axios from 'axios';
 const Register: React.FC = () => {
-  const [username, setUsername] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [error, setError] = useState<string>('');
+    const [submitting, setSubmitting] = useState(false);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    
+  const handerChange = async (e: SyntheticEvent) => {
+    e.preventDefault();
+     setSubmitting(true);
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    const username = formData.get("username") as string;
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
+    const level = formData.get("level") as string;
+    const speciality = formData.get("speciality") as string;
+    const role = formData.get("role") as string;
     try {
-      console.log('Connexion avec :', { username, password });
+      const res = await axios.post("http://127.0.0.1:5000/users/", {
+      username,  
+      email,
+        password,
+        level,
+        speciality,
+        role
+      });
       
-      setUsername('');
-      setPassword('');
-      setError('');
+      if (res.status === 200 && res.data.success) {
+        console.log(res.data);
+        console.log(email , password)
+        localStorage.setItem("isLoggedIn", "true");
+        
+        
+      }
     } catch (error) {
-      setError('Erreur de connexion, veuillez réessayer.');
+      setErrorMessage("Login failed. Please check your credentials.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -38,36 +59,46 @@ const Register: React.FC = () => {
                   <div className="card">
                       <div className="card-body">
                           <h4 className="card-title">Create new account</h4>
-                          <form>
+                          {errorMessage && (
+                                   <div className="alert alert-danger">{errorMessage}</div>
+                                )}
+                          <form onSubmit={handerChange}>
       
                               <div className="form-group">
                                   <label >Name</label>
-                                  <input type="text" className="form-control" id="name" name="name" />
+                                  <input type="text" className="form-control" id="name" name="username" disabled={submitting} />
                               </div>
 
                               <div className="form-group">
                                   <label >E-Mail Address</label>
-                                  <input id="email" type="email" className="form-control" name="email" />
+                                  <input id="email" type="email" className="form-control" name="email" disabled={submitting} />
+                              </div>
+                              <div className="form-group">
+                                  <label >Password</label>
+                                  <input id="password" type="password" className="form-control" name="password" disabled={submitting} />
                               </div>
 
                               <div className="form-row">
                                   <div className="form-group col-md-6">
-                                      <label >Password
+                                      <label >Level
                                       </label>
-                                      <input id="password" type="password" className="form-control" name="password" />
+                                      <input id="level" type="text" className="form-control" name="level" disabled={submitting} />
                                   </div>
                                   <div className="form-group col-md-6">
-                                      <label >Confirm Password
+                                      <label >Speciality
                                       </label>
-                                      <input id="password-confirm" type="password2" className="form-control" name="password_confirmation" />
+                                      <input id="speciality" type="text" className="form-control" name="speciality" disabled={submitting}/>
                                   </div>
                               </div>
-
+                              <div className="form-group">
+                                  <label >Role</label>
+                                  <input id="role" type="text" className="form-control" name="role" disabled={submitting} />
+                              </div>
 
                               <div className="form-group no-margin">
-                                  <a href="/index.html" className="btn btn-primary btn-block">
+                                  <button type='submit' className="btn btn-primary btn-block">
                                       Sign Up
-                                  </a>
+                                  </button>
                               </div>
                               <div className="text-center mt-3 small">
                                   Already have an account? <a href="login.html">Sign In</a>

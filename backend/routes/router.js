@@ -3,6 +3,8 @@ const teamsController = require('../controllers/teamController');
 const authController = require('../controllers/authController')
 const challengeController = require('../controllers/challengesController')
 const importExcelController = require('../utils/importExcel')
+
+
 const router = require('express').Router();
 const envoyeEmail = require('../utils/send-email');
 
@@ -34,6 +36,8 @@ router.delete('/users/:id', userController.deleteUser);
 router.get('/teams', teamsController.getAllTeams);
 router.post('/teams', teamsController.createTeams);
 router.get('/teams/:id', teamsController.getTeamsById);
+router.post("/jury/sendNotification", juryController.sendNotificationWithEmail);
+router.post("/jury/gradeTeamWork", juryController.gradeTeamWork);
 router.put('/teams/:id', teamsController.updateTeams);
 router.delete('/teams/:id', teamsController.deleteTeams);
 router.get('/challenge', challengeController.getAllChallenges);
