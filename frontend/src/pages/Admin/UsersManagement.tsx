@@ -24,7 +24,6 @@ const UsersManagement: React.FC = () => {
     };
 
 
-    // Assuming you have a type for User data
     interface User {
         id: number;
         name: string;
@@ -46,8 +45,7 @@ const UsersManagement: React.FC = () => {
 
     // Toggle dropdown visibility
     const toggleNotifications = () => setIsNotificationsOpen(!isNotificationsOpen);
-    // const toggleProfileMenu = () => setIsProfileMenuOpen(!isProfileMenuOpen);
-
+    
     const toggleProfileMenu = (event: React.MouseEvent<HTMLAnchorElement>) => {
         event.preventDefault(); // Prevent the link from navigating
         setIsProfileMenuOpen(!isProfileMenuOpen);
