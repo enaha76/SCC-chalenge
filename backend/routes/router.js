@@ -1,5 +1,6 @@
 const userController = require('../controllers/userController');
 const teamsController = require('../controllers/teamController')
+const juryController = require('../controllers/JuryController');
 const router = require('express').Router();
 
 router.get("/", (req,res,next)=>{
@@ -17,6 +18,8 @@ router.delete('/users/:id', userController.deleteUser);
 router.get('/teams', teamsController.getAllTeams);
 router.post('/teams', teamsController.createTeams);
 router.get('/teams/:id', teamsController.getTeamsById);
+router.post("/jury/sendNotification", juryController.sendNotificationWithEmail);
+router.post("/jury/gradeTeamWork", juryController.gradeTeamWork);
 router.put('/teams/:id', teamsController.updateTeams);
 router.delete('/teams/:id', teamsController.deleteTeams);
 module.exports = router;
