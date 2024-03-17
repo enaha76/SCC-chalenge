@@ -1,4 +1,6 @@
 const ChallengeServices = require('../services/challengesService');
+const fs = require('fs');
+const unzipper = require('unzipper');
 
 async function getAllChallenges(req, res) {
   try {
@@ -51,10 +53,52 @@ async function deleteChallenges(req, res) {
     res.status(500).json({ error: 'Erreur interne du serveur'});
   }
 }
+async function importChallengesFromZip(req, res) {
+  try {
+    if (!req.files || !req.files.zipFile) {
+      return res.status(400).json({ error: 'No zip file uploaded' });
+    }
+
+    const zipFile = req.files.zipFile;
+    const zipFilePath = `./uploads/${zipFile.name}`;
+
+    await zipFile.mv(zipFilePath);
+
+    const descriptions = await extractDescriptionsFromZip(zipFilePath);
+
+    await ChallengesService.importChallengesFromDescriptions(descriptions);
+
+    fs.unlinkSync(zipFilePath);
+
+    return res.status(200).json({ message: 'Challenges imported successfully' });
+  } catch (error) {
+    console.error('Error importing challenges:', error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+}
+
+async function extractDescriptionsFromZip(zipFilePath) {
+  const descriptions = [];
+
+  await fs.createReadStream(zipFilePath)
+    .pipe(unzipper.Parse())
+    .on('entry', async entry => {
+      const fileName = entry.path;
+      if (fileName.endsWith('.txt')) {
+        const description = await entry.buffer();
+        descriptions.push(description.toString());
+      } else {
+        entry.autodrain();
+      }
+    });
+
+  return descriptions;
+}
 module.exports = {
   getAllChallenges,
   getChallengesById,
   createChallenges,
   updateChallenges,
-  deleteChallenges
+  deleteChallenges,
+  importChallengesFromZip     
 };
