@@ -1,21 +1,17 @@
 // App.tsx
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route,Navigate } from 'react-router-dom';
-import mainRoutes from './routes/mainroute';
+import logo from './logo.svg';
+import './App.css';
+import TeamManagementPage from './pages/TeamManagement';
+import Login from './pages/Login';
+import UsersManagement from './pages/Admin/UsersManagement';
 
 
 const App: React.FC = () => {
   
   return (
-    <Router>
-      <Routes>
-      <Route path="/" element={<Navigate to="/login" replace />} />
-        
-      {mainRoutes.map((route, index) => (
-          <Route path={route.path} element={<route.component />} key={index} />
-        ))}
-      </Routes>
-    </Router>
+   
+    <UsersManagement/>
   );
 };
 
