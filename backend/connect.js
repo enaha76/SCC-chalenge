@@ -1,14 +1,13 @@
-const express = require('express');
+const { Sequelize } = require("sequelize");
 const mysql = require('mysql');
 
 const conn = mysql.createConnection({
-    host: 'scc.cdmu82cywiaw.eu-north-1.rds.amazonaws.com',
+    host: 'localhost',
     port:"3306",
-    user: 'CMSCC',
-    password: 'Cm22404546',
-    database: 'SCC',
-    
-})
+    user: 'root',
+    password: '',
+    database: 'scc',   
+});
 
 conn.connect((err) => {
     if (err) {
@@ -16,9 +15,6 @@ conn.connect((err) => {
         return;
       }
       console.log('Connexion à la base de données réussie');
-})
-export default conn;
+});
 
-// app.listen(port, () => {
-//     console.log('Serveur en cours d\'exécution sur le port', port);
-// });
+module.exports = conn;

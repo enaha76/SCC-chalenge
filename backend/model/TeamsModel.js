@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize";
-import conn from "../connect.js";
+import conn from "../connect";
 import Users from "./UserModels.js";
 const {DataTypes} = Sequelize;
 
@@ -24,4 +24,11 @@ const Teams = conn.define('teams',{
 });
 Users.hasMany(Teams);
 Teams.belongsTo(Users, {foreignKey: 'lead_user_id'});
+conn.sync()
+    .then(() => {
+        console.log("La table 'users' a été créée avec succès dans la base de données.");
+    })
+    .catch(err => {
+        console.error("Erreur lors de la création de la table 'users':", err);
+    });
 export default Teams;
