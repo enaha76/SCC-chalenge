@@ -25,12 +25,12 @@ app.use(session({
 }));
 app.use(cors({
     credentials: true,
-    origin: 'http://localhost:3000'
+    origin: 'http://localhost:5000'
 }));
 app.use(express.json());
 app.use(router);
 
-const PORT = process.env.PORT || 3000; // Utilisation d'un port par défaut si celui-ci n'est pas défini dans les variables d'environnement
+const PORT = process.env.PORT || 5000; // Utilisation d'un port par défaut si celui-ci n'est pas défini dans les variables d'environnement
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
