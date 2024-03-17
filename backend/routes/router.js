@@ -1,4 +1,5 @@
-const userController = require('../controllers/userController'); // Assurez-vous de spécifier le chemin correct vers votre contrôleur
+const userController = require('../controllers/userController');
+const teamsController = require('../controllers/teamController')
 const router = require('express').Router();
 
 router.get("/", (req,res,next)=>{
@@ -13,4 +14,9 @@ router.post('/users', userController.createUser);
 router.get('/users/:id', userController.getUserById);
 router.put('/users/:id', userController.updateUser);
 router.delete('/users/:id', userController.deleteUser);
+router.get('/teams', teamsController.getAllTeams);
+router.post('/teams', teamsController.createTeams);
+router.get('/teams/:id', teamsController.getTeamsById);
+router.put('/teams/:id', teamsController.updateTeams);
+router.delete('/teams/:id', teamsController.deleteTeams);
 module.exports = router;
