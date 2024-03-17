@@ -26,9 +26,9 @@ Users.hasMany(Teams);
 Teams.belongsTo(Users, {foreignKey: 'lead_user_id'});
 conn.sync()
     .then(() => {
-        console.log("La table 'users' a été créée avec succès dans la base de données.");
+        console.log("La table 'teams' a été créée avec succès dans la base de données.");
     })
     .catch(err => {
-        console.error("Erreur lors de la création de la table 'users':", err);
+        console.error("Erreur lors de la création de la table 'teams':", err);
     });
 module.exports = Teams;

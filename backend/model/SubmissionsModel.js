@@ -1,7 +1,7 @@
 const Sequelize  = require("sequelize");
 const conn = require("../config/connect");
 const Teams = require('./TeamsModel.js');
-const Challenge = require('./Challenges .js');
+const Challenge = require('./ChallengesModel.js');
 const {DataTypes} = Sequelize;
 
 const Submissions = conn.define('submissions',{
@@ -38,13 +38,13 @@ const Submissions = conn.define('submissions',{
 });
 Teams.hasMany(Submissions);
 Challenge.hasMany(Submissions);
-Submissions.belongsTo(Users, {foreignKey: 'challenge_id'});
-Submissions.belongsTo(Users, {foreignKey: 'team_id'});
+Submissions.belongsTo(Challenge, {foreignKey: 'challenge_id'});
+Submissions.belongsTo(Teams, {foreignKey: 'team_id'});
 conn.sync()
     .then(() => {
-        console.log("La table 'users' a été créée avec succès dans la base de données.");
+        console.log("La table 'submission' a été créée avec succès dans la base de données.");
     })
     .catch(err => {
-        console.error("Erreur lors de la création de la table 'users':", err);
+        console.error("Erreur lors de la création de la table 'submission':", err);
     });
 module.exports= Submissions;
