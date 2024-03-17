@@ -4,7 +4,7 @@ const Criteria = require("./Criteria.js");
 const Challenges = require("./ChallengesModel.js");
 const {DataTypes} = Sequelize;
 
-const ChallengeCriteria = conn.define('teams',{
+const ChallengeCriteria = conn.define('challengeCriteria',{
     challenge_id :{
         type: DataTypes.STRING,
         allowNull: false,
@@ -24,13 +24,13 @@ const ChallengeCriteria = conn.define('teams',{
 });
 Challenges.hasMany(ChallengeCriteria);
 Criteria.hasMany(ChallengeCriteria);
-Evaluations.belongsTo(Challenges, {foreignKey: 'challenge_id'});
-Evaluations.belongsTo(Criteria, {foreignKey: 'criteria_id'});
+ChallengeCriteria.belongsTo(Challenges, {foreignKey: 'challenge_id'});
+ChallengeCriteria.belongsTo(Criteria, {foreignKey: 'criteria_id'});
 conn.sync()
     .then(() => {
-        console.log("La table 'users' a été créée avec succès dans la base de données.");
+        console.log("La table 'challengecriteriaModel' a été créée avec succès dans la base de données.");
     })
     .catch(err => {
-        console.error("Erreur lors de la création de la table 'users':", err);
+        console.error("Erreur lors de la création de la table 'challengecriteriaModel':", err);
     });
-export default Teams;
+module.exports = ChallengeCriteria;

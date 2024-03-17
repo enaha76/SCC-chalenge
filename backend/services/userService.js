@@ -44,8 +44,7 @@ class UserService {
         } catch (error) {
             console.error(`Erreur  ${userId} :`, error);
             throw error;
-        }
-    }
+        }    }
 
     async deleteUser(userId) {
         try {
@@ -57,6 +56,15 @@ class UserService {
             return user;
         } catch (error) {
             console.error(`Erreur ${userId} :`, error);
+            throw error;
+        }
+    }
+    async authenticate(username, password) {
+        try {
+            const user = await Users.findOne({ where: { username: username, password: password } });
+            return user;
+        } catch (error) {
+            console.error('Erreur ', error);
             throw error;
         }
     }

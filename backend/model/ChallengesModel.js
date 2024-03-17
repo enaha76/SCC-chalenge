@@ -1,32 +1,34 @@
 const { Sequelize } = require("sequelize");
-const conn = require("../connect");
+const conn = require("../config/connect.js");
 const Users = require("./UserModels.js");
-const {DataTypes} = Sequelize;
+const { DataTypes } = Sequelize;
 
-const Challenges  = conn.define('challenges',{
-    title    :{
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate:{
-            notEmpty: true,
-            len: [3, 100]
-        }
+const Challenges = conn.define(
+  "challenges",
+  {
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+        len: [3, 100],
+      },
     },
-    description     :{
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate:{
-            notEmpty: true,
-        }
-    },
-    deadline     :{
+    description :{
         type: DataTypes.STRING,
         allowNull: false,
         validate:{
             notEmpty: true,
         }
     },
-    organizer_user_id  :{
+    deadline:{
+        type: DataTypes.TIME,
+        allowNull: false,
+        validate:{
+            notEmpty: true,
+        }
+    },
+    organizer_user_id :{
         type: DataTypes.INTEGER,
         allowNull: false,
         validate:{
@@ -37,12 +39,12 @@ const Challenges  = conn.define('challenges',{
     freezeTableName: true
 });
 Users.hasMany(Challenges);
-Challenges.belongsTo(Users, {foreignKey: 'organizer_user_id '});
+Challenges.belongsTo(Users, {foreignKey: 'organizer_user_id'});
 conn.sync()
     .then(() => {
-        console.log("La table 'users' a été créée avec succès dans la base de données.");
+        console.log("La table 'Challenges' a été créée avec succès dans la base de données.");
     })
     .catch(err => {
-        console.error("Erreur lors de la création de la table 'users':", err);
+        console.error("Erreur lors de la création de la table 'Challenges':", err);
     });
-module.exports = Challenges ;
+module.exports = Challenges;
