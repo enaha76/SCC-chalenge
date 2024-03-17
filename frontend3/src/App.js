@@ -19,17 +19,17 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Signup />} />
+         <Route path="/" element={<Signup />} />
        {/* <Route element={<ProtectedRoute/>}> */}
-         <Route  element={<Print />} path="/print" />
+         {/* <Route  element={<Print />} path="/print" /> */}
           {/* <Route path="/loginAdmin" element={<LoginAdmin />} /> */}
           {/* <Route path="/loginCompta" element={<LoginCompta />} /> */}
 {/* 
           <Route path="/ResetPassword" element={<ResetPassword />} /> */}
-          <Route path="/home" element={<Home />} />
-          {/* <Route path="/login" element={<Login />} />
-          <Route path="/depot" element={<Depot />} />
-          <Route path="/transfert" element={<Transfert />} />
+          {/* <Route path="/home" element={<Home />} /> */}
+          <Route path="/l" element={<Login />} />
+          {/* <Route path="/depot" element={<Depot />} /> */}
+          {/* <Route path="/transfert" element={<Transfert />} />
           <Route path="/retrait" element={<Retrait />} />
           <Route path="/retrait/:id" element={<Retrait />} /> */}
        {/* </Route> */}

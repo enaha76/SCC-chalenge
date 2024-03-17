@@ -46,29 +46,7 @@ const Home = () => {
                                             <div className="text-center mt-2 mb-4">
                                                 <span><img src="assets/images/users/mauripay.png" alt="" height="29" /></span>
                                             </div>
-                                            <form onSubmit={handleSubmit} className="ps-3 pe-3">
-                                                <div className="mb-3">
-                                                    <label htmlFor="exampleInputEmail1" className="form-label">Number</label>
-                                                    <select onChange={handleChange} name="email" className="form-control select2" data-toggle="select2">
-                                                        <option>Select</option>
-                                                        {results && results.length > 0 && results.map(user => (
-                                                            <option key={user.email} value={JSON.stringify(user)}>
-                                                                {user.email}
-                                                            </option>
-                                                        ))}
-                                                    </select>
-
-
-
-                                                </div>
-                                                <div className="mb-3">
-                                                    <label htmlFor="password" className="form-label">Code</label>
-                                                    <input name='code' className="form-control" onChange={handleChange} type="text" required="" id="password" placeholder="Password" />
-                                                </div>
-                                                <div className="mb-3 text-center">
-                                                    <button className="btn btn-primary" type="submit">Save</button>
-                                                </div>
-                                            </form>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -79,22 +57,7 @@ const Home = () => {
                                         <div id='tb' className="table-responsive">
                                             <div className="col-12 text-center">
 
-                                                {table !== null ? (
-                                                    table
-                                                ) : (
-                                                    <div id="message" className={showMessage ? '' : 'd-none'}>
-                                                        <div id='div6' className="row justify-content-center">
-                                                            <div className="col-md-5">
-                                                                <img
-                                                                    src="assets/images/emptydata.jpg"
-                                                                    alt=""
-                                                                    height="300"
-                                                                    width="300"
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                )}
+                                               
 
                                             </div>
 
