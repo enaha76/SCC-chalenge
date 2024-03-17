@@ -7,7 +7,7 @@ import { Alert } from 'antd';
 const Signup = () => {
     const [loginError, setLoginError] = React.useState(false); // State variable to track login error
     const URL = "http://localhost";
-    const Port = 3000;
+    const Port = 5000;
     const uri = `${URL}:${Port}`; 
 
     const navigate = useNavigate(); // Now, useNavigate should work here
